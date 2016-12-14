@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OSBot Map</title>
+    <link rel="stylesheet" href="css/external/bootstrap.min.css">
+    <link rel="stylesheet" href="css/external/leaflet.css"/>
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/code.css">
+    <script data-main="js/app" src="js/external/require.js"></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="http://osbot.org/forum/user/192661-explv/">
+                <span id="explv">Explv</span>'s OSBot Map
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#" class="toggle-collection" id="toggle-path">Path</a></li>
+                <li><a href="#" class="toggle-collection" id="toggle-area">Area</a></li>
+                <li><a href="#" class="toggle-collection" id="toggle-poly-area">Poly Area</a></li>
+                <li><a href="#" id="undo"><i class="fa fa-undo" aria-hidden="true"></i></a></li>
+                <li><a href="#" id="clear"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <form class="dropdown-menu form-horizontal" id="settings-form">
+                        <div class="form-group">
+                            <label for="access-modifier" class="col-sm-5 control-label">Access modifier:</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" id="access-modifier">
+                                    <option>none</option>
+                                    <option>public</option>
+                                    <option>private</option>
+                                    <option>protected</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="static" class="col-sm-5 control-label">static:</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="static">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="final" class="col-sm-5 control-label">final:</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="final">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="output-type" class="col-sm-5 control-label">Output type:</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" id="output-type">
+                                    <option>Array</option>
+                                    <option>List</option>
+                                    <option>Arrays.asList</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control coord" placeholder="x" id="xCoord">
+                    <input type="text" class="form-control coord" placeholder="y" id="yCoord">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text" id="edit-text">Press Ctrl to toggle editing: <span class="edit-disabled"
+                                                                         id="edit-status">Disabled</span></p></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid" id="container">
+    <div class="col-lg-3 col-md-5 col-sm-4 col-xs-4" id="output-container"
+         style="height:calc(100% - 50px); display:none;">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <pre><code id="code-output"></code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="map-container" style="height:calc(100% - 50px);">
+        <div id="map"></div>
+    </div>
+</div>
+</body>
+</html>
